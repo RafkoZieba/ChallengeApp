@@ -5,9 +5,7 @@ Console.WriteLine("Kim jesteś? Podaj swoje imię do wyboru Adam, Ala, Ela aa");
 var name = Console.ReadLine();
 
 Console.WriteLine(name + " podaj swój wiek");
-Console.WriteLine(name + " podaj swój wiek");
-Console.WriteLine(name + " podaj swój wiek");
-Console.WriteLine(name + " podaj swój wiek");
+
 var age = int.Parse(Console.ReadLine());
 
 if (name == "Ela" || name == "Ala")
