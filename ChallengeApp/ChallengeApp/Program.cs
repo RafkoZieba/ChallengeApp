@@ -1,62 +1,52 @@
-﻿string gender = "";
-string message = "";
+﻿using ChallengeApp;
 
-Console.WriteLine("Kim jesteś? Podaj swoje imię do wyboru Adam, Ala, Ela aa");
-var name = Console.ReadLine();
+Random Random = new Random();
 
-Console.WriteLine(name + " podaj swój wiek");
+Employee employer1 = new Employee(); 
+employer1.Name = "Jacek"; 
+employer1.Surname = "Kowalski"; 
+employer1.Age = Random.Next(18, 70); 
 
-var age = int.Parse(Console.ReadLine());
-
-if (name == "Ela" || name == "Ala")
-{
-	Console.WriteLine(name + " sądzę że jesteś kobietą. Czy tak? T/N");
-	string isWoman = Console.ReadLine();
-
-	if (isWoman.ToUpper() == "T")
-	{
-		gender = "Kobieta";
-	}
-	else
-	{
-		gender = "Mężczyzna";
-		Console.WriteLine("Ups, czyli jesteś mężczyzną.");
-	}
+for(int i = 0; i < 5; i++) 
+{ 
+	employer1.AddScore(Random.Next(100)); 
 }
+Employee employer2 = new Employee(); 
+employer2.Name = "Michal"; 
+employer2.Surname = "Zawadzki"; 
+employer2.Age = Random.Next(18, 70); 
 
-if (name == "Adam")
-{
-	Console.WriteLine(name + " sądzę że jesteś meżczyzną. Czy tak? T/N");
-	var isMan = Console.ReadLine();
-	if (isMan.ToUpper() == "T")
-	{
-		gender = "Mężczyzna";
-	}
-	else
-	{
-		gender = "Kobieta";
-		Console.WriteLine("Ups, czyli jesteś kobietą.");
-	}
+for(int i = 0; i < 5; i++) 
+{ 
+	employer2.AddScore(Random.Next(100)); 
 }
+Employee employer3 = new Employee();
+employer3.Name = "Zbyszek"; 
+employer3.Surname = "Śmigło"; 
+employer3.Age = Random.Next(18, 70); 
 
-if (gender == "Kobieta")
+for(int i = 0; i < 5; i++)
 {
-	if (age < 30)
-	{
-		message = gender + " poniżej 30 lat";
-	}
-	else
-	{
-		message = name + ", lat " + age;
-	}
-}
-else if (gender == "Mężczyzna")
-{
-	if (age < 18)
-	{
-		message = "Niepełnoletni " + gender.ToLower();
-	}
-}
+	employer3.AddScore(Random.Next(100)); 
+} 
 
-Console.WriteLine(message);
+List<int> result = new List<int>(); 
+result.Add(employer1.Result); 
+result.Add(employer2.Result); 
+result.Add(employer3.Result);
+
+int maxResult = result.Max();
+
+if(maxResult == employer1.Result) 
+{
+	employer1.ShowFullEployerData();
+}
+else if (maxResult == employer2.Result)
+{
+	employer2.ShowFullEployerData();
+}
+else if (maxResult == employer3.Result)
+{
+	employer3.ShowFullEployerData();
+}
 Console.ReadKey();
