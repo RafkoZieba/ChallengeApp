@@ -2,29 +2,41 @@
 
 namespace ChallengeApp
 {
-    class Employee
+    public class Employee
     {
-        private List<int> Score = new List<int>();
-        public static int nic;
-        public Employee() { }
-        public string Name { get; set; }
-        public string Surname { get; set; }
-        public int Age { get; set; }
-        public void AddScore(int number) { this.Score.Add(number); }
-        public int Result { get { return this.Score.Sum(); } }
-        public void ShowFullEployerData()
-        {
-
-            Console.WriteLine($"{this.Name} {this.Surname}");
-            Console.WriteLine($"wiek {this.Age} lata");
-            Console.Write($"{this.Score.Sum()} punkty ");
-            Console.Write(" suma z [");
-            foreach (int score in this.Score)
-            {
-
-                Console.Write($"{score}, ");
-            }
-            Console.Write("]");
+        private List<float> grades = new List<float>();
+        //public static int nic;
+        public Employee(string name, string surname) 
+        { 
+            this.Name = name;
+            this.Surname = surname;
         }
+        public string Name { get; private set; }
+        public string Surname { get; private set; }
+        public void AddGrade(float grade)
+        {
+            this.grades.Add(grade);
+        }
+
+        public Statistics GetStatistics()
+        { 
+            var statistics = new Statistics();
+
+            statistics.Average = 0;
+            statistics.Max = float.MinValue;
+            statistics.Min = float.MaxValue;
+
+            foreach (var grade in this.grades)
+            {
+                statistics.Max = Math.Max(statistics.Max, grade);
+                statistics.Min = Math.Min(statistics.Min, grade);
+                statistics.Average += grade;
+            }
+
+            statistics.Average/= this.grades.Count;
+
+            return statistics;
+        }
+      
     }
 }
